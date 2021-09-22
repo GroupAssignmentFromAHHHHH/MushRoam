@@ -16,12 +16,12 @@ const routes = [
     component: About
   },
   {
-    path: '/posts',
+    path: '/postfeed',
     name: 'PostList',
     component: PostList
   },
   {
-    path: '/postCreate',
+    path: '/posts',
     name: 'PostCreate',
     component: PostCreate
   }
