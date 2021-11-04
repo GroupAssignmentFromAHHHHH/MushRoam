@@ -1,6 +1,9 @@
 <template>
 <section> 
- <h2>Mushroam</h2>
+
+  <h2>Welcome to Mushroam</h2>
+  <p>{{ user }}</p>
+ 
  </section>
 </template>
 
@@ -20,16 +23,15 @@ section {
   margin: auto;
   width: 100vw;
   height: 100vh;
-  background-color:#740214;
+  background-color:#810013;
   color: white;
-  transition: 3s ease all;
 }
 
-section:hover {
+/* section:hover {
   background-color:#a7404f;
   width:70vw;
   height:31vh;
   border-radius: 20em;
-}
+} */
 
 </style>
