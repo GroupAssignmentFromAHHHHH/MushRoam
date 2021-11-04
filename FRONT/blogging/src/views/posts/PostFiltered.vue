@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>Newsfeed</h2>
+    <h2>Single Post</h2>
     <div class="newsfeed">
       <ul>
         <li class="posts" v-for="post of posts" :key="post._id">
@@ -25,7 +25,7 @@
 <script>
 export default {
   // emits: ["posted"],
-  name: "PostList",
+  name: "PostFiltered",
   components: {},
   data() {
     return {
@@ -34,12 +34,17 @@ export default {
     };
   },
   mounted() {
-    this.getPosts();
+    this.getSinglePost();
   },
   methods: {
-    async getPosts() {
-      const response = await fetch("http://localhost:3000/posts");
-      const data = await response.json();
+    async getSinglePost() {
+      var result
+      var query = { description: "AHHH" };
+      const response = await fetch("http://localhost:3000/posts").find(query);
+      result = response.toArray(function() {
+        console.log(result);
+      })
+      const data = await result.json();
       this.posts = data;
     },
   },

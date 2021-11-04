@@ -8,9 +8,11 @@
       <router-link :to="{ name: 'PostList' }">Feed</router-link> /
       <router-link :to="{ name: 'PostCreate' }">Create Post</router-link> /
       <router-link :to="{ name: 'About' }">About</router-link> /
-      <router-link :to="{ name: 'Register' }">Sign Up</router-link> /
+      <router-link v-if="!user"  :to="{ name: 'Register' }">Sign Up /</router-link>
       <router-link v-if="!user" :to="{ name: 'Login' }">Login</router-link>
+      
       <div id="logged" v-else> <a @click="logOut">Log Out</a> </div>
+      <router-link :to="{ name: 'PostFiltered' }">TEMP</router-link> /
     </div>
     <router-view @loggedin="userLogin" :user="user" />
     
