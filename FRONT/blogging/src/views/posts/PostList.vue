@@ -10,6 +10,7 @@
           <h3>{{ post.author.username }} </h3>
           <p>{{ new Date(post.createdAt).toLocaleDateString("en-NZ") }}</p>
         </li>
+        
         <li><h3>testing</h3></li>
         <li><h3>testing</h3></li>
         <li><h3>testing</h3></li>
@@ -46,15 +47,11 @@ export default {
 
 <style scoped>
 section {
-  padding-top: 5em;
+  padding-top: 2em;
 }
 
 li {
-  border: thin #ccc solid;
-  margin:0 0 3em 0;
-  border-radius: 0.75em;
-  height:15em;
-  /* max-height: 15em; */
+  border: thin grey solid;
 }
 
 .newsfeed {

@@ -65,7 +65,7 @@ h2 {
 }
 
 .container {
-  margin-top: 12em;
+  margin-top: 10em;
 }
 
 section {

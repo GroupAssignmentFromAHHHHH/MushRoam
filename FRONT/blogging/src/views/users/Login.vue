@@ -55,7 +55,7 @@ export default {
 
       if (userData.username) {
         window.localStorage.setItem("username", userData.username);
-      }
+      } 
       this.$emit("loggedin");
     },
   },
@@ -68,7 +68,7 @@ h2 {
 }
 
 .container {
-  margin-top: 12em;
+  margin-top: 10em;
 }
 
 section {

@@ -1,7 +1,7 @@
 <template>
   <section>
     <header>
-      <h4>MUSHROAM</h4> 
+      <h4>MUSHROAM</h4> <span>Welcome, {{user}}</span>
     </header>
 
     <div id="nav">
@@ -10,7 +10,7 @@
       <router-link :to="{ name: 'PostCreate' }">Create Post</router-link> /
       <router-link :to="{ name: 'About' }">About</router-link> /
       <router-link :to="{ name: 'Register' }">Sign Up</router-link> /
-      <router-link v-if="!user" :to="{ name: 'Login' }">Login <span> {{user}} </span></router-link>
+      <router-link v-if="!user" :to="{ name: 'Login' }">Login</router-link>
       <div id="logged" v-else> <a @click="logOut">Log Out</a> </div>
     </div>
     <router-view @loggedin="userLogin" :user="user" />
@@ -66,9 +66,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  height: 100vh;
-  flex-direction: column;
-  box-sizing: border-box;
 }
 
 header {
@@ -77,8 +74,6 @@ header {
   padding: 1em;
   width: 100%;
   color: white;
-  top:0;
-  position: fixed;
   border-bottom: thin solid #ffffff;
 }
 
@@ -93,12 +88,12 @@ header span {
   padding: 1em;
   background-color: #740214;
   color: white;
-  position: fixed;
+  position: absolute;
   bottom: 0;
 }
 
 #nav a {
-  font-size: 0.75em;
+  font-size: 0.7em;
   text-decoration: none;
   color: rgb(201, 105, 105);
 }
