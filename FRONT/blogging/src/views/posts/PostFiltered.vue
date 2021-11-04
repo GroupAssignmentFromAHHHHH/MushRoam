@@ -3,7 +3,7 @@
     <h2>Single Post</h2>
     <div class="newsfeed">
       <ul>
-        <li class="posts" v-for="post of posts" :key="post._id">
+        <li class="posts" v-if="post">
           <div class="author">
             <p>{{ post.author.username}}</p>
           </div>
@@ -29,8 +29,7 @@ export default {
   components: {},
   data() {
     return {
-      posts: [
-      ],
+      post: null,
     };
   },
   mounted() {
@@ -38,14 +37,12 @@ export default {
   },
   methods: {
     async getSinglePost() {
-      var result
       var query = { description: "AHHH" };
-      const response = await fetch("http://localhost:3000/posts").find(query);
-      result = response.toArray(function() {
-        console.log(result);
-      })
-      const data = await result.json();
-      this.posts = data;
+      const response = await fetch("http://localhost:3000/posts")
+      const data = await response.json();
+      var result = data.find(post => { return post.description == "AHHH" });
+      console.log(result);
+      this.post = result;      
     },
   },
 };
