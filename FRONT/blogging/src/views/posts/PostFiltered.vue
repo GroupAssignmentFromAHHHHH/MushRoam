@@ -6,6 +6,10 @@
         <li class="posts" v-if="post">
           <div class="author">
             <p>{{ post.author.username}}</p>
+            <div class="button-box">
+            <button>edit</button>
+            <button>delete</button>
+            </div>
           </div>
           <div class="img-box"></div>
           <div class="data">
@@ -65,6 +69,10 @@ li p {
 .author {
   border: thin rgb(231, 231, 231) solid;
   height: 3em;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   text-align: left;
   font-size: 0.9em;
   padding: 0.5em 0 0 1em;
@@ -107,5 +115,11 @@ li p {
 .newsfeed {
   width: 100vw;
   padding: 1.5em;
+}
+
+.button-box {
+  padding: 0.5em;
+  display: flex;
+  gap: 0.5em;
 }
 </style>
