@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie-parser")
 const DBLINK = "mongodb+srv://james:aloha@cluster0.4dqqd.mongodb.net/mushroam?retryWrites=true&w=majority";
-
 mongoose.connect(DBLINK,
     () => {
         console.log("connected to database...");

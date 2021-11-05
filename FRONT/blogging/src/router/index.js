@@ -5,7 +5,8 @@ import PostList from '../views/posts/PostList'
 import PostCreate from '../views/posts/PostCreate'
 import Register from '../views/users/Register'
 import Login from '../views/users/Login'
-import PostDetail from "../views/posts/PostDetail";
+import PostDetail from "../views/posts/PostDetail"
+import PostEdit from "../views/posts/PostEdit"
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
     path: "/posts/:postId",
     name: "PostDetail",
     component: PostDetail,
+    props: true,
+  },
+  {
+    path: "/posts/:postId",
+    name: "PostEdit",
+    component: PostEdit,
     props: true,
   },
   {
