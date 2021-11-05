@@ -53,7 +53,6 @@ app.get('/posts', async (req, res) => {
 app.post('/posts', authUser, async (req, res) => {
 
     const post = new Post({
-        imageUpload: req.body.imageUpload,
         description: req.body.description,
         species: req.body.species,
         location: req.body.location,

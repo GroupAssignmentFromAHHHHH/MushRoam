@@ -29,7 +29,7 @@
       </div>
     </form>
     </div>
-    {{user}}
+    <!-- {{user}} -->
   </section>
 </template>
 
@@ -58,10 +58,9 @@ export default {
 </script>
 
 <style scoped>
-
-
-h2 {
+.container h2 {
   color: white;
+  font-weight:700;
 }
 
 .container {
@@ -90,7 +89,8 @@ section {
 }
 
 button {
-  
+  font-family: 'Montserrat', sans-serif;
+  font-weight:700;
   cursor: pointer;
   color: #740214;
   border-radius: 2em;
@@ -98,6 +98,7 @@ button {
   border: none;
   height: 3em;
   width: 40%;
-  font-weight:bold;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
 }
 </style>

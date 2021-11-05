@@ -1,20 +1,20 @@
 <template>
   <section>
     <header>
-      <h4>MUSHROAM</h4> <span>Welcome, {{user}}</span>
+      <router-link :to="{ name: 'Home' }"><h4>MUSHROAM</h4> </router-link> 
     </header>
 
     <div id="nav">
-      <!-- <router-link :to="{ name: 'Home' }">MUSHROAM</router-link> / -->
       <router-link :to="{ name: 'PostList' }">Feed</router-link> /
       <router-link :to="{ name: 'PostCreate' }">Create Post</router-link> /
       <router-link :to="{ name: 'About' }">About</router-link> /
-      <router-link :to="{ name: 'Register' }">Sign Up</router-link> /
+      <router-link v-if="!user"  :to="{ name: 'Register' }">Sign Up</router-link> /
       <router-link v-if="!user" :to="{ name: 'Login' }">Login</router-link>
+      
       <div id="logged" v-else> <a @click="logOut">Log Out</a> </div>
     </div>
     <router-view @loggedin="userLogin" :user="user" />
-    {{ user }}
+    
   </section>
 </template>
 
@@ -66,6 +66,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  height: 100vh;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header {
@@ -73,8 +77,20 @@ header {
   background-color: #740214;
   padding: 1em;
   width: 100%;
-  color: white;
+  top:0;
+  position: fixed;
   border-bottom: thin solid #ffffff;
+}
+
+header h4 {
+  color: white;
+  font-family: 'Arial';
+  font-weight:bolder;
+  text-decoration: none;
+}
+
+header a {
+   text-decoration: none;
 }
 
 header span {
@@ -88,12 +104,13 @@ header span {
   padding: 1em;
   background-color: #740214;
   color: white;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  font-family: 'Arial';
 }
 
 #nav a {
-  font-size: 0.7em;
+  font-size: 0.75em;
   text-decoration: none;
   color: rgb(201, 105, 105);
 }

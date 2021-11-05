@@ -1,6 +1,4 @@
 <template>
-
-
   <section>
     <h2>Create New Post</h2>
 
@@ -8,14 +6,14 @@
       <form @submit.prevent="postPost" enctype="multipart/form-data">
         <div id="formgroup-1" class="formgroup">
           <div class="img-upload">
-            <label for="image">Upload Image</label>
+            <label for="image"></label>
             <input
               type="file"
               @change="imageUpload"
               name="image-upload"
               id="image-upload"
               class="image-upload"
-            >
+            />
           </div>
           <label for="description"></label>
           <textarea
@@ -46,7 +44,7 @@
             type="text"
             name="location"
             id="location"
-            placeholder="Location"
+            placeholder="Location (optional)"
           />
         </div>
 
@@ -62,7 +60,6 @@ export default {
   name: "PostCreate",
   data() {
     return {
-      imageUpload: null,
       species: null,
       location: null,
       description: null,
@@ -76,7 +73,6 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          imageUpload: this.imageUpload,
           species: this.species,
           location: this.location,
           description: this.description,
@@ -110,11 +106,12 @@ export default {
 }
 
 .img-upload input {
-  height:100%;
+  height: 100%;
   width: 100%;
 }
 
 .img-upload {
+
   width: 30%;
   background-color: rgb(221, 221, 221);
 }
@@ -131,6 +128,10 @@ export default {
 section {
   width: 100vw;
   padding-top: 2em;
+}
+
+section h2 {
+  font-weight: 700;
 }
 
 .container-create-inputs {
@@ -150,5 +151,8 @@ button {
   border: none;
   height: 3em;
   width: 80%;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 </style>
