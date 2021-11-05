@@ -56,6 +56,8 @@ export default {
       this.post = data;
     },
 
+    
+
     async updatePost(postId) {
       const response = await fetch("http://localhost:3000/posts", {
         method: "POST",
@@ -69,6 +71,16 @@ export default {
       });
       const data = await response.json();
       this.$emit("posted");
+
+      app.post("/post/:id", (req, res) => {
+  data.findByIdAndUpdate(
+    req.params.id,
+    { species: this.species,
+          location: this.location,
+          description: this.description,
+           },
+  );
+});
       this.$router.push({ name: "PostList" });
     },
   },
