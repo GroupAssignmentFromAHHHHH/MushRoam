@@ -1,4 +1,4 @@
-<template>
+<template id="view ">
   <section>
     <h2>Single Post</h2>
     <div class="newsfeed">
@@ -7,13 +7,13 @@
           <div class="author">
             <p>{{ post.author.username }}</p>
             <div class="button-box">
-              <button>edit</button>
-              <button @click="deletePost">Delete Post</button>
+              <button @click="$router.push({ name: 'PostEdit', params: { postId: post._id } })">Edit</button>
+              <button @click="deletePost">Delete</button>
             </div>
           </div>
           <div class="img-box"></div>
           <div class="data">
-            <p>{{ post.description }}</p>
+            <p> {{post.description}}</p>
             <p><b>Species:</b> {{ post.species }}</p>
             <p><b>Location: </b> {{ post.location }}</p>
           </div>

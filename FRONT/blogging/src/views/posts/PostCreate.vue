@@ -81,6 +81,7 @@ export default {
       });
       const data = await response.json();
       this.$emit("posted");
+      this.$router.push({ name: "PostList" });
     },
   },
 };
