@@ -84,6 +84,8 @@ export default {
     },
   },
 };
+
+
 </script>
 
 <style scoped>
@@ -153,6 +155,7 @@ button {
   width: 80%;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: none;
 }
+
 </style>

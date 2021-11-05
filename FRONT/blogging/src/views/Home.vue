@@ -1,7 +1,7 @@
 <template>
 <section> 
 
-  <h2>Welcome to Mushroam</h2>
+  <div><img class="biglogo" src="biglogo.png" alt=""></div>
   <p>{{ user }}</p>
  
  </section>
@@ -27,11 +27,10 @@ section {
   color: white;
 }
 
-/* section:hover {
-  background-color:#a7404f;
-  width:70vw;
-  height:31vh;
-  border-radius: 20em;
-} */
+
+.biglogo {
+  height: 4em;
+  width: 30em;
+}
 
 </style>

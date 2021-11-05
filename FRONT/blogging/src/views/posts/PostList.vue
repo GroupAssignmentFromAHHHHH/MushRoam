@@ -1,7 +1,21 @@
 <template>
   <section>
-    <h2>Newsfeed</h2>
+    <svg viewBox="-50 -25 1100 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto;">
+  <defs>
+    <path id="path-1"  fill="none" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+  </defs>
+
+  <text style="fill: var(--text-color);">
+    <!-- <textPath xlink:href="#path-1">
+      Happy hunting: Put the Fun in Funghi
+
+    </textPath> -->
+    <div></div>
+  </text>
+</svg>
+
     <div class="newsfeed">
+      <img src="smalllogo.png" alt="">
       <ul>
         <li class="posts" v-for="post of posts" :key="post._id">
           <div class="author">
@@ -60,9 +74,21 @@ section {
   padding-top: 5em;
 }
 
-section h2 {
+textpath {
+  margin: 2em;
   font-weight: 700;
+  color: maroon;
+  font-size: 2em;
+  z-index: 1000;
 }
+
+#path-1 {
+  left: 2em;
+  right: 2em;
+  color: maroon;
+}
+
+
 
 li p {
   font-size: 0.9em;
@@ -70,15 +96,21 @@ li p {
 }
 
 .author {
-  border: thin rgb(231, 231, 231) solid;
   height: 3em;
   text-align: left;
   font-size: 0.9em;
   padding: 0.5em 0 0 1em;
+  background-color: maroon;
+}
+
+.author p {
+  color: white;
+  font-weight: bolder;
 }
 
 .posts {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: none;
+  border: thin rgb(231, 231, 231) solid;
   margin: 0 0 3em 0;
   border-radius: 0.5em;
   min-height: 20em;
@@ -114,5 +146,9 @@ li p {
 .newsfeed {
   width: 100vw;
   padding: 1.5em;
+}
+
+p {
+  text-decoration: none;
 }
 </style>

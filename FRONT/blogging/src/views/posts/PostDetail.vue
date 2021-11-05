@@ -114,7 +114,7 @@ li p {
 }
 
 .author {
-  border: thin rgb(231, 231, 231) solid;
+  
   height: 3em;
   width: 100%;
   display: flex;
@@ -126,11 +126,12 @@ li p {
 }
 
 .posts {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: none;
   margin: 0 0 3em 0;
   border-radius: 0.5em;
   min-height: 20em;
   position: relative;
+  border: thin rgb(231, 231, 231) solid;
 }
 
 .data {
