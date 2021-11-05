@@ -58,24 +58,11 @@ export default {
 
     
 
-    async updatePost(postId) {
-      const response = await fetch("http://localhost:3000/posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          species: this.species,
-          location: this.location,
-          description: this.description,
-        }),
-        credentials: 'include',
-      });
-      const data = await response.json();
-      this.$emit("posted");
-
+    async updatePost() {
       app.post("/post/:id", (req, res) => {
-  data.findByIdAndUpdate(
-    req.params.id,
-    { species: this.species,
+      data.findByIdAndUpdate(
+      req.params.id,
+      { species: this.species,
           location: this.location,
           description: this.description,
            },
