@@ -1,11 +1,10 @@
 <template id="view ">
   <section>
-    <h2>Single Post</h2>
     <div class="newsfeed">
       <ul>
         <div class="posts" v-if="post">
           <div class="author">
-            <p>{{ post.author.username }}</p>
+            <p>{{ post.author.username}}</p>
             <div class="button-box">
               <button @click="$router.push({ name: 'PostEdit', params: { postId: post._id } })">Edit</button>
               <button @click="deletePost">Delete</button>

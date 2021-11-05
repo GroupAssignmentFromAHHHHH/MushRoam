@@ -56,18 +56,11 @@ export default {
       this.post = data;
     },
 
-    
-
     async updatePost() {
-      app.post("/post/:id", (req, res) => {
-      data.findByIdAndUpdate(
-      req.params.id,
-      { species: this.species,
+      post.postId ={ species: this.species,
           location: this.location,
           description: this.description,
-           },
-  );
-});
+           };
       this.$router.push({ name: "PostList" });
     },
   },

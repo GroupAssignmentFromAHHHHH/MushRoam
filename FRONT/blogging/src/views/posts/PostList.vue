@@ -17,17 +17,13 @@
     <div class="newsfeed">
       <img src="smalllogo.png" alt="">
       <ul>
-        <li class="posts" v-for="post of posts" :key="post._id">
+        <li class="posts" v-for="post of posts" :key="post._id" @click="$router.push({ name: 'PostDetail', params: { postId: post._id } })">
           <div class="author">
             <p>{{ post.author.username}}</p>
           </div>
           <div class="img-box"></div>
           <div class="data">
-            <router-link 
-            :to="{ name: 'PostDetail', params: { postId: post._id } }" 
-          >
-            <p>{{ post.description }}</p></router-link
-          >
+            <p>{{ post.description }}</p>
           
             <p><b>Species:</b> {{ post.species }}</p>
             <p><b>Location: </b> {{ post.location }}</p>
