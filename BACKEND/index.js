@@ -17,6 +17,7 @@ mongoose.connect(DBLINK,
     }
 );
 
+
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -48,6 +49,15 @@ app.get('/posts', async (req, res) => {
     const posts = await Post.find().populate('author', 'username');
     res.status(200).json(posts);
 });
+app.delete("/posts/:postId", async (req, res) => {
+    const deletedPost = await Post.findByIdAndDelete(req.params.postId); // find and delete instead of just find
+    res.status(200).json(deletedPost); // set status to 200 and send back the deleted post
+  });
+
+app.get("/posts/:postId", async (req, res) => {
+    const post = await Post.findById(req.params.postId); // get a specific post, by sending the URL segment as an id to match (only works if the bit after posts/ is actually a valid id, theoretically it could be any string)
+    res.status(200).json(post); // set status to 200 and send back JSONified post data
+  });
 
 //postcreate
 app.post('/posts', authUser, async (req, res) => {
@@ -117,6 +127,36 @@ app.get("/users/logout", async (req, res) => {
     res.json({ message: "logged out" });
 })
 
+app.get("/posts/:postId/comments", async (req, res) => {
+  const post = await Post.findById(req.params.postId); // get the matching post (this part is exactly the same as above, getting a specific post)
+  res.status(200).json(post.comments); // the difference is here we send back just the comments, not the whole post
+});
+
+// this endpoint listens for GET requests to http://localhost:3000/posts/<segment-labelled-as-postID>/comments/<segment-labelled-as-commentId>/ and if detected, sends back a specific comment from a specific post
+app.get("/posts/:postId/comments/:commentId", async (req, res) => {
+  const post = await Post.findById(req.params.postId); // get the post the matches the postId
+  const comment = post.comments.id(req.params.commentId); // get the comment from that post that matches the commentId
+  res.status(200).json(comment); // send it back to the client
+});
+
+// this endpoint listens for DELETE requests to to http://localhost:3000/posts/<segment-labelled-as-postID>/comments/<segment-labelled-as-commentId>/ and if detected, deletes a specific comment from a specific post and sends it back to the client
+app.delete("/posts/:postId/comments/:commentId", async (req, res) => {
+  const post = await Post.findById(req.params.postId); // find the post
+  post.comments.pull(req.params.commentId); // pull the matching comment from the posts comment array
+  const savedPost = await post.save(); // save the post back to the database
+  res.status(200).send(savedPost); // send back the newly saved post to the client
+});
+
+// this endpoint listens for POST requests to to http://localhost:3000/posts/<segment-labelled-as-postID>/comments/ and if detected, creates a new post comment and pushes that to an existing post, saves the post to the database and sends it back to the client
+app.post("/posts/:postId/comments", async (req, res) => {
+  const post = await Post.findById(req.params.postId);  // find the matchin post
+  post.comments.push({ // create an object that matches the comment schema containing the comment data from the request, and add it to the fetched posts' comments array. This array is defined in the schema so it expects a comment that matches the schema and will reject anything that doesn't fit
+    author: req.body.author, // include the author (if present, see the front end comments regarding this)
+    text: req.body.text, // include the text
+  });
+  const savedPost = await post.save(); // save the updated post
+  res.status(200).send(savedPost); // and then send it to the client
+});
 
 
 
