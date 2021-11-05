@@ -12,13 +12,12 @@
     </header>
 
     <div id="nav">
-      <router-link :to="{ name: 'PostList' }">Feed</router-link> /
-      <router-link :to="{ name: 'PostCreate' }">Create Post</router-link> /
-      <router-link :to="{ name: 'About' }">About</router-link> /
-      <router-link v-if="!user"  :to="{ name: 'Register' }">Sign Up</router-link> /
+      <router-link :to="{ name: 'PostList' }">Feed</router-link> |
+      <router-link :to="{ name: 'PostCreate' }">Create Post</router-link> |
+      <router-link :to="{ name: 'About' }">About</router-link> 
+      <router-link v-if="!user"  :to="{ name: 'Register' }">Sign Up</router-link> |
       <router-link v-if="!user" :to="{ name: 'Login' }">Login</router-link>
-      
-      <div id="logged" v-else> <a @click="logOut">Log Out</a> </div>
+      <div  id="logged" v-else> <a  @click="logOut">Log Out</a> </div>
     </div>
     <router-view @loggedin="userLogin" :user="user" />
     
@@ -115,12 +114,16 @@ header span {
   position: fixed;
   bottom: 0;
   font-family: 'Arial';
+  display: flex;
+  justify-content: space-around;
+  
 }
 
 #nav a {
   font-size: 0.75em;
   text-decoration: none;
   color: rgb(201, 105, 105);
+  padding-top: 0.255em;
 }
 
 #nav a.router-link-exact-active {
@@ -166,6 +169,8 @@ a:hover {
 .custom-shape-divider-bottom-1636089532 .shape-fill {
     fill: #FFFFFF;
 }
+
+
 
 
 </style>
