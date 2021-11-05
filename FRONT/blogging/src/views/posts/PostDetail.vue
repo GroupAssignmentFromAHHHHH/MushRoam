@@ -3,7 +3,7 @@
     <h2>Single Post</h2>
     <div class="newsfeed">
       <ul>
-        <li class="posts" v-if="post">
+        <div class="posts" v-if="post">
           <div class="author">
             <p>{{ post.author.username }}</p>
             <div class="button-box">
@@ -20,14 +20,46 @@
           <p class="time">
             {{ new Date(post.createdAt).toLocaleDateString("en-NZ") }}
           </p>
+          <hr />
+          <div class="comment-section">
+            <ul>
+        <li v-for="comment of post.comments" :key="comment._id">
+          <!-- loop through the comments in the post and render them here -->
+          <h6>
+            {{ comment.author }}
+          </h6>
+          <p>{{ comment.text }}</p>
+          <button @click="deleteComment(comment._id)">Delete</button>
+          <!-- when this button is clicked it triggers an event listener that calls a method. The method will send a DELETE request to the API with the id of the comment to delete in the URL as a parameter -->
         </li>
+      </ul>
+    <hr />
+    <form @submit.prevent="postComment">
+      <!-- when this button is clicked it triggers an event listener that calls a method. The method will send a POST request to the API with the contents of the form, which will be used to create a new comment. the .prevent event modifier prevents default form submission behaviour -->
+      <div class="form-group">
+        <label for="text">Comment</label>
+        <textarea
+          v-model="comment.text"
+          name="text"
+          id="text"
+          cols="30"
+          rows="5"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input v-model="comment.author" type="text" name="author" id="author" />
+      </div>
+      <button type="submit">Post Comment</button>
+    </form>
+          </div>
+        </div>
       </ul>
     </div>
   </section>
 </template>
 
 <script>
-
 export default {
   name: "PostDetail",
   props: {
