@@ -71,6 +71,25 @@ app.post('/posts', authUser, async (req, res) => {
     res.status(200).send(savedPost);
 });
 
+
+//editpost
+app.patch('/posts/:postId', async (req, res, next) => {
+    try {
+        const data = {
+            description: req.body.description,
+            species: req.body.species,
+            location: req.body.location,
+        };
+        const updatedPost = await Post.findByIdAndUpdate(
+            req.params.postId,
+            data
+        );
+        res.json(updatedPost);
+         } catch (error) {
+           next(error);
+    }
+});
+
 //users
 const User = require("./models/User");
 
