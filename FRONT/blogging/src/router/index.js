@@ -3,9 +3,9 @@ import Home from '../views/Home.vue';
 import About from '../views/About.vue'
 import PostList from '../views/posts/PostList'
 import PostCreate from '../views/posts/PostCreate'
-import PostFiltered from '../views/posts/PostFiltered'
 import Register from '../views/users/Register'
 import Login from '../views/users/Login'
+import PostDetail from "../views/posts/PostDetail";
 
 const routes = [
   {
@@ -24,14 +24,15 @@ const routes = [
     component: PostList
   },
   {
-    path: '/postfiltered',
-    name: 'PostFiltered',
-    component: PostFiltered
-  },
-  {
     path: '/posts',
     name: 'PostCreate',
     component: PostCreate
+  },
+  {
+    path: "/posts/:postId",
+    name: "PostDetail",
+    component: PostDetail,
+    props: true,
   },
   {
     path: '/users/register',

@@ -9,13 +9,19 @@
           </div>
           <div class="img-box"></div>
           <div class="data">
-            <p>{{ post.description }}</p>
+            <router-link 
+            :to="{ name: 'PostDetail', params: { postId: post._id } }" 
+          >
+            <p>{{ post.description }}</p></router-link
+          >
+          
             <p><b>Species:</b> {{ post.species }}</p>
             <p><b>Location: </b> {{ post.location }}</p>
           </div>
           <p class="time">
             {{ new Date(post.createdAt).toLocaleDateString("en-NZ") }}
           </p>
+  
         </li>
       </ul>
     </div>
@@ -23,24 +29,27 @@
 </template>
 
 <script>
+import PostCreate from "./PostCreate.vue";
 export default {
-  // emits: ["posted"],
-  name: "PostList",
-  components: {},
-  data() {
+  name: "PostList", // the name of the component (helps with debugging)
+  components: { // the list of registered subcomponents
+    PostCreate, 
+  },
+  data() {  // the data object that contains the data that vue will make available to the template to render
     return {
-      posts: [
-      ],
+      posts: [],
     };
   },
-  mounted() {
+  mounted() { // the mounted lifecycle hook, which executes its code block whenever an instance of this component is rendered into the DOM
     this.getPosts();
   },
-  methods: {
+  methods: { // the set of methods this component can execute
+
+  // this method uses fetch() to send a GET request to the API, and then awaits the response, which it then decodes from JSON to standard JS objects, and stores it in data()
     async getPosts() {
-      const response = await fetch("http://localhost:3000/posts");
-      const data = await response.json();
-      this.posts = data;
+      const response = await fetch("http://localhost:3000/posts"); // send request to server and await response
+      const data = await response.json(); // begin decoding from JSON to standard JS and await completion of download/conversion
+      this.posts = data; // then put the decoded response into the data, making it available to the template to read and render
     },
   },
 };

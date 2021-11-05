@@ -5,10 +5,10 @@
       <ul>
         <li class="posts" v-if="post">
           <div class="author">
-            <p>{{ post.author.username}}</p>
+            <p>{{ post.author.username }}</p>
             <div class="button-box">
-            <button>edit</button>
-            <button>delete</button>
+              <button>edit</button>
+              <button @click="deletePost">Delete Post</button>
             </div>
           </div>
           <div class="img-box"></div>
@@ -27,26 +27,73 @@
 </template>
 
 <script>
+
 export default {
-  // emits: ["posted"],
-  name: "PostFiltered",
-  components: {},
+  name: "PostDetail",
+  props: {
+    postId: String,
+  },
   data() {
     return {
       post: null,
+      comment: {
+        text: null,
+        author: null,
+      },
     };
   },
   mounted() {
-    this.getSinglePost();
+    this.getPost();
   },
   methods: {
-    async getSinglePost() {
-      var query = { description: "AHHH" };
-      const response = await fetch("http://localhost:3000/posts")
+    async getPost() {
+      const response = await fetch(
+        "http://localhost:3000/posts/" + this.postId
+      );
       const data = await response.json();
-      var result = data.find(post => { return post.description == "AHHH" });
-      console.log(result);
-      this.post = result;      
+      this.post = data;
+    },
+
+    async deletePost() {
+      const response = await fetch(
+        "http://localhost:3000/posts/" + this.post._id,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      this.$router.push({ name: "PostList" });
+    },
+    async postComment() {
+      const comment = {};
+      comment.text = this.comment.text;
+      if (this.comment.author) {
+        comment.author = this.comment.author;
+      }
+      this.comment = { text: null, author: null };
+      const response = await fetch(
+        "http://localhost:3000/posts/" + this.post._id + "/comments/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(comment),
+        }
+      );
+      const data = await response.json();
+      this.getPost();
+    },
+    async deleteComment(commentId) {
+      const response = await fetch(
+        "http://localhost:3000/posts/" +
+          this.post._id +
+          "/comments/" +
+          commentId,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      this.getPost();
     },
   },
 };
@@ -83,7 +130,6 @@ li p {
   margin: 0 0 3em 0;
   border-radius: 0.5em;
   min-height: 20em;
-  max-height: 25em;
   position: relative;
 }
 
